@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q2mGsNjbOtKatNCRCa+7CNbQM6Urokui3OPmTbtovb25P6NMR9w9p5Ua0vkUspUrYxx91uVUEoR5fW7jtUufKA==",
+  "dgSpecHash": "xx3kxxJYRPxQJTtdPaKISo1O472LBHiQbtMmQk6F+4RmsTYRTrt02u0udSzl2O4SFzZHvKF79ukppmQ+0AKEgw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Denis\\Desktop\\TeamProject\\BaraholkaTeam\\BaraholkaTeam\\BaraholkaTeam.csproj",
+  "projectFilePath": "C:\\Users\\Denis\\Desktop\\TeamProject\\BaraholkaTeam\\BaraholkaTeam.DAL\\BaraholkaTeam.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Denis\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Denis\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
