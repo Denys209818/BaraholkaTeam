@@ -1,4 +1,5 @@
 ﻿using BaraholkaTeam.DAL.ContextData;
+using BaraholkaTeam.Models;
 using BaraholkaTeam.Services;
 using BaraholkaTeamProject.DAL.Services;
 using System;
@@ -9,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace BaraholkaTeam
@@ -27,12 +29,8 @@ namespace BaraholkaTeam
         {
             this.context = new MyContext();
             DBSeeder.SeedAll(this.context);
-            int x = 0;
 
-            foreach (Product product in SearchProducts.SearchProduct(context)) 
-            {
-                CreateGroupBox(product, x++);
-            }
+            ShowAllProducts(SearchProducts.SearchProduct(context));
         }
 
         private void btnContact_Click(object sender, EventArgs e)
@@ -42,10 +40,6 @@ namespace BaraholkaTeam
 
         private void CreateGroupBox(Product product, int id, int dy = 255) 
         {
-            foreach (GroupBox gb in this.boxes) 
-            {
-                this.Controls.Remove(gb);
-            }
             GroupBox gbUser = new GroupBox();
             PictureBox pcBox = new PictureBox();
             Label lblProductDescription = new Label();
@@ -121,6 +115,26 @@ namespace BaraholkaTeam
             gbUser.TabStop = false;
 
             this.Controls.Add(gbUser);
+            this.boxes.Add(gbUser);
+        }
+
+        private void ShowAllProducts(ProductCollection coll, string query ="") 
+        {
+            foreach (GroupBox gb in this.boxes)
+            {
+                this.Controls.Remove(gb);
+            }
+            this.boxes.Clear();
+            int x = 0;
+            foreach (Product product in coll)
+            {
+                CreateGroupBox(product, x++);
+            }
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            ShowAllProducts(SearchProducts.SearchProduct(context, txtSearch.Text), txtSearch.Text);
         }
     }
 }

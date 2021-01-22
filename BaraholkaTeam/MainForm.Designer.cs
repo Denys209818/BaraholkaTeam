@@ -97,6 +97,7 @@ namespace BaraholkaTeam
             this.btnConfirm.TabIndex = 2;
             this.btnConfirm.Text = "Пошук";
             this.btnConfirm.UseVisualStyleBackColor = true;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // MainForm
             // 
