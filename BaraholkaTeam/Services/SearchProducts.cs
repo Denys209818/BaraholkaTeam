@@ -25,5 +25,15 @@ namespace BaraholkaTeam.Services
             coll.products = collection.ToList();
             return coll;
         }
+
+        public static UserInfo SearchOnId(MyContext context, int Id) 
+        {
+                UserInfo product = context.products.AsQueryable()
+                .Where(x => x.Id == Id)
+                .Select(x => new UserInfo { Name = x.user.Name, Surname = x.user.Surname, telNum = x.user.Login })
+                .FirstOrDefault();
+
+            return product;
+        }
     }
 }

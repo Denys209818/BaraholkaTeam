@@ -20,6 +20,7 @@ namespace BaraholkaTeam.DAL.ContextData
         public byte[] image { get; set; }
         [ForeignKey("user.Id")]
         public int UserId { get; set; }
+        public int Price { get; set; }
 
         public User user { get; set; }
     }

@@ -44,6 +44,7 @@ namespace BaraholkaTeamProject.DAL.Services
                     "Шестилинзовый объектив, Вспышка True Tone Quad-LED, " +
                     "Защита объектива сапфировым стеклом, Сенсор BSI, Гибридный ИК-фильтр";
                 product.user = user;
+                product.Price = 10000;
                 context.products.Add(product);
 
                 context.SaveChanges();

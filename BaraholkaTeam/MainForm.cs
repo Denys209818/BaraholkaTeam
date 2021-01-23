@@ -18,13 +18,11 @@ namespace BaraholkaTeam
     public partial class MainForm : Form
     {
         MyContext context { set; get; }
-
         public List<GroupBox> boxes { get; set; } = new List<GroupBox>();
         public MainForm()
         {
             InitializeComponent();
         }
-
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.context = new MyContext();
@@ -32,13 +30,16 @@ namespace BaraholkaTeam
 
             ShowAllProducts(SearchProducts.SearchProduct(context));
         }
-
         private void btnContact_Click(object sender, EventArgs e)
         {
             Button btn = (sender as Button);
+            int id = int.Parse(btn.Name.Last().ToString());
+            UserInfo user = SearchProducts.SearchOnId(context, id);
+            UserInfoForm userInfo = new UserInfoForm(user.Name + " " + user.Surname, user.telNum);
+            userInfo.StartPosition = FormStartPosition.CenterParent;
+            userInfo.ShowDialog();
         }
-
-        private void CreateGroupBox(Product product, int id, int dy = 255) 
+        private void CreateGroupBox(Product product, int id, int dy = 305) 
         {
             GroupBox gbUser = new GroupBox();
             PictureBox pcBox = new PictureBox();
@@ -46,12 +47,13 @@ namespace BaraholkaTeam
             Label lblNameProduct = new Label();
             Button btnContact = new Button();
             Button btnAdd = new Button();
+            Label lblPrice = new Label();
             // 
             // btnContact
             // 
             btnContact.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             btnContact.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnContact.Location = new System.Drawing.Point(20, 171);
+            btnContact.Location = new System.Drawing.Point(20, 220);
             btnContact.Name = $"btnContact{product.Id}";
             btnContact.Size = new System.Drawing.Size(125, 47);
             btnContact.TabIndex = 3;
@@ -62,17 +64,17 @@ namespace BaraholkaTeam
             // lblProductDescription
             // 
             lblProductDescription.AutoEllipsis = true;
-            lblProductDescription.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            lblProductDescription.Location = new System.Drawing.Point(161, 62);
+            lblProductDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblProductDescription.Location = new System.Drawing.Point(180, 62);
             lblProductDescription.Name = $"lblProductDescription{product.Id}";
-            lblProductDescription.Size = new System.Drawing.Size(327, 82);
+            lblProductDescription.Size = new System.Drawing.Size(430, 140);
             lblProductDescription.TabIndex = 2;
             lblProductDescription.Text = product.Description;
             // 
             // lblNameProduct
             // 
             lblNameProduct.AutoSize = true;
-            lblNameProduct.Location = new System.Drawing.Point(161, 23);
+            lblNameProduct.Location = new System.Drawing.Point(180, 23);
             lblNameProduct.Name = $"lblNameProduct{product.Id}";
             lblNameProduct.Size = new System.Drawing.Size(156, 28);
             lblNameProduct.TabIndex = 1;
@@ -82,7 +84,7 @@ namespace BaraholkaTeam
             // 
             pcBox.Location = new System.Drawing.Point(20, 23);
             pcBox.Name = $"pcBox{product.Id}";
-            pcBox.Size = new System.Drawing.Size(125, 121);
+            pcBox.Size = new System.Drawing.Size(150, 150);
             pcBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             pcBox.TabIndex = 0;
             pcBox.TabStop = false;
@@ -92,14 +94,19 @@ namespace BaraholkaTeam
             // 
             btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             btnAdd.Font = new System.Drawing.Font("Segoe UI", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            btnAdd.Location = new System.Drawing.Point(161, 171);
+            btnAdd.Location = new System.Drawing.Point(161, 220);
             btnAdd.Name = $"btnAdd{product.Id}";
             btnAdd.Size = new System.Drawing.Size(114, 47);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Додати в корзину";
             btnAdd.UseVisualStyleBackColor = false;
-
-
+            //
+            //lblPrice
+            //
+            lblPrice.Name = $"lblPrice{product.Id}";
+            lblPrice.Location = new Point(500, 230);
+            lblPrice.Text = "Ціна: " + product.Price.ToString();
+            lblPrice.AutoSize = true;
 
 
             gbUser.Controls.Add(btnAdd);
@@ -107,17 +114,17 @@ namespace BaraholkaTeam
             gbUser.Controls.Add(lblProductDescription);
             gbUser.Controls.Add(lblNameProduct);
             gbUser.Controls.Add(pcBox);
+            gbUser.Controls.Add(lblPrice);
             gbUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             gbUser.Location = new System.Drawing.Point(153, (113 + ((id)*dy)));
             gbUser.Name = $"gbUser{product.Id}";
-            gbUser.Size = new System.Drawing.Size(494, 224);
+            gbUser.Size = new System.Drawing.Size(650, 270);
             gbUser.TabIndex = 2;
             gbUser.TabStop = false;
 
             this.Controls.Add(gbUser);
             this.boxes.Add(gbUser);
         }
-
         private void ShowAllProducts(ProductCollection coll, string query ="") 
         {
             foreach (GroupBox gb in this.boxes)
@@ -131,7 +138,6 @@ namespace BaraholkaTeam
                 CreateGroupBox(product, x++);
             }
         }
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             ShowAllProducts(SearchProducts.SearchProduct(context, txtSearch.Text), txtSearch.Text);

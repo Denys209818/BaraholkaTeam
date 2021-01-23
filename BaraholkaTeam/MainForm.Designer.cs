@@ -49,7 +49,7 @@ namespace BaraholkaTeam
             this.toolStripMenuItemKorsina});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(800, 28);
+            this.mainMenu.Size = new System.Drawing.Size(982, 28);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -83,7 +83,7 @@ namespace BaraholkaTeam
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtSearch.Location = new System.Drawing.Point(96, 47);
+            this.txtSearch.Location = new System.Drawing.Point(187, 47);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PlaceholderText = "Пошук...";
             this.txtSearch.Size = new System.Drawing.Size(494, 41);
@@ -91,7 +91,7 @@ namespace BaraholkaTeam
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(597, 47);
+            this.btnConfirm.Location = new System.Drawing.Point(688, 47);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(107, 41);
             this.btnConfirm.TabIndex = 2;
@@ -105,13 +105,11 @@ namespace BaraholkaTeam
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(800, 453);
+            this.ClientSize = new System.Drawing.Size(982, 603);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.mainMenu);
             this.MainMenuStrip = this.mainMenu;
-            this.MaximumSize = new System.Drawing.Size(818, 500);
-            this.MinimumSize = new System.Drawing.Size(818, 500);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
