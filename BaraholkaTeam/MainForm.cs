@@ -133,7 +133,7 @@ namespace BaraholkaTeam
             }
             this.boxes.Clear();
             int x = 0;
-            foreach (Product product in coll)
+            foreach (var product in SearchProducts.SearchProduct(context, query).products) 
             {
                 CreateGroupBox(product, x++);
             }
