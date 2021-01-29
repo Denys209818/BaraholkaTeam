@@ -27,6 +27,7 @@ namespace BaraholkaTeam
         {
             this.context = new MyContext();
             DBSeeder.SeedAll(this.context);
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             ShowAllProducts(SearchProducts.SearchProduct(context));
         }
@@ -44,7 +45,7 @@ namespace BaraholkaTeam
             GroupBox gbUser = new GroupBox();
             PictureBox pcBox = new PictureBox();
             Label lblProductDescription = new Label();
-            Label lblNameProduct = new Label();
+            LinkLabel lblNameProduct = new LinkLabel();
             Button btnContact = new Button();
             Button btnAdd = new Button();
             Label lblPrice = new Label();
@@ -79,6 +80,8 @@ namespace BaraholkaTeam
             lblNameProduct.Size = new System.Drawing.Size(156, 28);
             lblNameProduct.TabIndex = 1;
             lblNameProduct.Text = product.Name;
+            lblNameProduct.Tag = product;
+            lblNameProduct.Click += new EventHandler(LinkTitle_Click);
             // 
             // pcBox
             // 
@@ -141,6 +144,15 @@ namespace BaraholkaTeam
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             ShowAllProducts(SearchProducts.SearchProduct(context, txtSearch.Text), txtSearch.Text);
+        }
+
+        private void LinkTitle_Click(object sender, EventArgs e) 
+        {
+            var product = (sender as LinkLabel).Tag as Product;
+            FullInfo info = new FullInfo(this.context, product);
+            this.Visible = false;
+            info.ShowDialog();
+            this.Visible = true;
         }
     }
 }

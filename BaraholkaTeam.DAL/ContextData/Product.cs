@@ -16,6 +16,8 @@ namespace BaraholkaTeam.DAL.ContextData
         public string Name { get; set; }
         [Required, StringLength(1000)]
         public string Description { get; set; }
+        [StringLength(5000)]
+        public string FullDescription { get; set; }
         [Required]
         public byte[] image { get; set; }
         [ForeignKey("user.Id")]

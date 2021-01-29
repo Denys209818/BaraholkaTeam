@@ -110,7 +110,8 @@ namespace BaraholkaTeam
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.mainMenu);
             this.MainMenuStrip = this.mainMenu;
-            this.MaximumSize = new System.Drawing.Size(1000, 650);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);

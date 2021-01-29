@@ -38,3 +38,4 @@ C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcore
 C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcoreapp3.1\BaraholkaTeam.pdb
 C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcoreapp3.1\BaraholkaTeam.genruntimeconfig.cache
 C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcoreapp3.1\BaraholkaTeam.UserInfoForm.resources
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcoreapp3.1\BaraholkaTeam.FullInfo.resources
