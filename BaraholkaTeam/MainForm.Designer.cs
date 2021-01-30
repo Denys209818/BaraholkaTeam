@@ -67,6 +67,7 @@ namespace BaraholkaTeam
             this.toolStripMenuItemProfile.Name = "toolStripMenuItemProfile";
             this.toolStripMenuItemProfile.Size = new System.Drawing.Size(151, 26);
             this.toolStripMenuItemProfile.Text = "Профіль";
+            this.toolStripMenuItemProfile.Click += new System.EventHandler(this.toolStripMenuItemProfile_Click);
             // 
             // toolStripMenuItemExit
             // 
@@ -102,6 +103,7 @@ namespace BaraholkaTeam
             // 
             // MainForm
             // 
+            this.AcceptButton = this.btnConfirm;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;

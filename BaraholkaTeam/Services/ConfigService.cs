@@ -9,5 +9,6 @@ namespace BaraholkaTeam.Services
     {
         public static List<Product> products { get; set; } = new List<Product>();
         public static MyContext context { get; set; }
+        public static bool IsAuth { get; set; } = false;
     }
 }

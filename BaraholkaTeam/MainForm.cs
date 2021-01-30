@@ -182,5 +182,30 @@ namespace BaraholkaTeam
                 MessageBox.Show("Товар уже був доданий!");
             }
         }
+
+        private void toolStripMenuItemProfile_Click(object sender, EventArgs e)
+        {
+            if (ConfigService.IsAuth)
+            {
+            this.Visible = false;
+                ProfileForm form = new ProfileForm();
+                form.ShowDialog();
+            this.Visible = true;
+            }
+            else 
+            {
+                AuthForm auth = new AuthForm();
+                DialogResult res = auth.ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    ConfigService.IsAuth = true;
+                    MessageBox.Show("Авторизовано!");
+                }
+                else if(res == DialogResult.No)
+                {
+                    MessageBox.Show("Невірний логін або пароль!");
+                }
+            }
+        }
     }
 }
