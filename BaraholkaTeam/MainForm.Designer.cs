@@ -79,6 +79,7 @@ namespace BaraholkaTeam
             this.toolStripMenuItemKorsina.Name = "toolStripMenuItemKorsina";
             this.toolStripMenuItemKorsina.Size = new System.Drawing.Size(83, 24);
             this.toolStripMenuItemKorsina.Text = "Корзина";
+            this.toolStripMenuItemKorsina.Click += new System.EventHandler(this.toolStripMenuItemKorsina_Click);
             // 
             // txtSearch
             // 
@@ -113,7 +114,8 @@ namespace BaraholkaTeam
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Головна сторінка";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();

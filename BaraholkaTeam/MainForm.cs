@@ -26,6 +26,7 @@ namespace BaraholkaTeam
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.context = new MyContext();
+            ConfigService.context = this.context;
             DBSeeder.SeedAll(this.context);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
@@ -41,6 +42,13 @@ namespace BaraholkaTeam
             userInfo.ShowDialog();
         }
         private void CreateGroupBox(Product product, int id, int dy = 305) 
+        {
+            GroupBox gbUser = GetGroupBox(product, id, dy);
+
+            this.Controls.Add(gbUser);
+            this.boxes.Add(gbUser);
+        }
+        private GroupBox GetGroupBox(Product product, int id, int dy = 305) 
         {
             GroupBox gbUser = new GroupBox();
             PictureBox pcBox = new PictureBox();
@@ -103,6 +111,8 @@ namespace BaraholkaTeam
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Додати в корзину";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Tag = product;
+            btnAdd.Click += new EventHandler(AddToCart);
             //
             //lblPrice
             //
@@ -119,14 +129,13 @@ namespace BaraholkaTeam
             gbUser.Controls.Add(pcBox);
             gbUser.Controls.Add(lblPrice);
             gbUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            gbUser.Location = new System.Drawing.Point(153, (113 + ((id)*dy)));
+            gbUser.Location = new System.Drawing.Point(153, (113 + ((id) * dy)));
             gbUser.Name = $"gbUser{product.Id}";
             gbUser.Size = new System.Drawing.Size(650, 270);
             gbUser.TabIndex = 2;
             gbUser.TabStop = false;
 
-            this.Controls.Add(gbUser);
-            this.boxes.Add(gbUser);
+            return gbUser;
         }
         private void ShowAllProducts(ProductCollection coll, string query ="") 
         {
@@ -145,7 +154,6 @@ namespace BaraholkaTeam
         {
             ShowAllProducts(SearchProducts.SearchProduct(context, txtSearch.Text), txtSearch.Text);
         }
-
         private void LinkTitle_Click(object sender, EventArgs e) 
         {
             var product = (sender as LinkLabel).Tag as Product;
@@ -153,6 +161,26 @@ namespace BaraholkaTeam
             this.Visible = false;
             info.ShowDialog();
             this.Visible = true;
+        }
+        private void toolStripMenuItemKorsina_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            CartForm form = new CartForm();
+            form.ShowDialog();
+            this.Visible = true;
+        }
+        private void AddToCart(object sender, EventArgs e) 
+        {
+            Product product = (sender as Button).Tag as Product;
+            if (!ConfigService.products.Contains(product))
+            {
+                ConfigService.products.Add(product);
+                MessageBox.Show("Товар доданий у корзину!");
+            }
+            else 
+            {
+                MessageBox.Show("Товар уже був доданий!");
+            }
         }
     }
 }
