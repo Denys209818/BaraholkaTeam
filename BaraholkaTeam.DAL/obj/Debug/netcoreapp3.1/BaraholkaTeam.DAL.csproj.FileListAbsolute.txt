@@ -1,0 +1,12 @@
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\BaraholkaTeam.DAL.deps.json
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\BaraholkaTeam.DAL.runtimeconfig.json
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\BaraholkaTeam.DAL.runtimeconfig.dev.json
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\BaraholkaTeam.DAL.dll
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\BaraholkaTeam.DAL.pdb
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.csprojAssemblyReference.cache
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.AssemblyInfoInputs.cache
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.AssemblyInfo.cs
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.dll
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.pdb
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.genruntimeconfig.cache
