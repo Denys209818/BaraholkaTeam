@@ -5353,21 +5353,17 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dev\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\dev\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dev\\Desktop\\Project\\BaraholkaTeam\\BaraholkaTeam\\BaraholkaTeam.csproj",
+      "projectUniqueName": "C:\\Users\\dev\\Desktop\\New folder\\BaraholkaTeam\\BaraholkaTeam\\BaraholkaTeam.csproj",
       "projectName": "BaraholkaTeam",
-      "projectPath": "C:\\Users\\dev\\Desktop\\Project\\BaraholkaTeam\\BaraholkaTeam\\BaraholkaTeam.csproj",
+      "projectPath": "C:\\Users\\dev\\Desktop\\New folder\\BaraholkaTeam\\BaraholkaTeam\\BaraholkaTeam.csproj",
       "packagesPath": "C:\\Users\\dev\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dev\\Desktop\\Project\\BaraholkaTeam\\BaraholkaTeam\\obj\\",
+      "outputPath": "C:\\Users\\dev\\Desktop\\New folder\\BaraholkaTeam\\BaraholkaTeam\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
         "C:\\Users\\dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -5381,9 +5377,10 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\dev\\Desktop\\Project\\BaraholkaTeam\\BaraholkaTeam.DAL\\BaraholkaTeam.DAL.csproj": {
-              "projectPath": "C:\\Users\\dev\\Desktop\\Project\\BaraholkaTeam\\BaraholkaTeam.DAL\\BaraholkaTeam.DAL.csproj"
+            "C:\\Users\\dev\\Desktop\\New folder\\BaraholkaTeam\\BaraholkaTeam.DAL\\BaraholkaTeam.DAL.csproj": {
+              "projectPath": "C:\\Users\\dev\\Desktop\\New folder\\BaraholkaTeam\\BaraholkaTeam.DAL\\BaraholkaTeam.DAL.csproj"
             }
           }
         }
@@ -5396,6 +5393,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Tools": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -5430,7 +5428,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
