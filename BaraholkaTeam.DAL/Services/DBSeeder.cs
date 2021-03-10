@@ -7,9 +7,72 @@ using System.Text;
 
 namespace BaraholkaTeamProject.DAL.Services
 {
-    public class DBSeeder
+    public static class DBSeeder
     {
         public static void SeedAll(MyContext context)
+        {
+            SeedFilters(context);
+            SeedProduct(context);
+        }
+
+        private static void SeedFilters(MyContext context) 
+        {
+            string[] filterNames = { "Виробник", "Діагональ"};
+
+            List<string[]> filterValues = new List<string[]> 
+            {
+                new string[] { "Apple", "Samsung", "Xiaomi" },
+                new string[] { "5-6", "4-5", "6-7" },
+            };
+
+            foreach (var fName in filterNames) 
+            {
+                if (context.FilterNames.SingleOrDefault(x => x.Name == fName) == null) 
+                {
+                    context.FilterNames.Add(new FilterName { 
+                        Name = fName
+                    });
+
+                    context.SaveChanges();
+                }
+            }
+
+            foreach (var vymir in filterValues) 
+            {
+                foreach (var fValue in vymir) 
+                {
+                    if (context.FilterValues.SingleOrDefault(x => x.Name == fValue) == null) 
+                    {
+                        context.FilterValues.Add(new FilterValue { 
+                        Name = fValue
+                        });
+                        context.SaveChanges();
+                    }
+                }
+            }
+
+            for (int i = 0; i < filterNames.Length; i++) 
+            {
+                var nId = context.FilterNames.SingleOrDefault(x => x.Name == filterNames[i]).Id;
+                foreach (var el in filterValues[i]) 
+                {
+                    var vId = context.FilterValues.SingleOrDefault(x => x.Name == el).Id;
+                    if (context.FilterNameValues.SingleOrDefault(x => x.FilterNameId == nId && x.FilterValueId == vId)
+                        == null) 
+                    {
+                        context.FilterNameValues.Add(new FilterNameValue 
+                        {
+                            FilterNameId = nId,
+                            FilterValueId = vId
+                        });
+
+                        context.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        private static void SeedProduct(MyContext context) 
         {
             if (context.users.Count() == 0 && context.products.Count() == 0)
             {

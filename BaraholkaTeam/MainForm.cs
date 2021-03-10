@@ -25,7 +25,6 @@ namespace BaraholkaTeam
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Hello World!");
             this.context = new MyContext();
             ConfigService.context = this.context;
             DBSeeder.SeedAll(this.context);
