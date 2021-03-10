@@ -7,7 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace BaraholkaTeam.DAL.ContextData
 {
-    [Table("tblProducts")]
+    [Table("tblProductsTeamProject")]
     public class Product
     {
         [Key]

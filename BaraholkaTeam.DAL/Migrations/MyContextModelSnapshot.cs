@@ -54,7 +54,7 @@ namespace BaraholkaTeam.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("tblProducts");
+                    b.ToTable("tblProductsTeamProject");
                 });
 
             modelBuilder.Entity("BaraholkaTeam.DAL.ContextData.User", b =>

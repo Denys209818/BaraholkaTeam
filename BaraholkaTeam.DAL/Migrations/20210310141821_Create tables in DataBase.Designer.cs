@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BaraholkaTeam.DAL.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20210121195455_Add column image to table")]
-    partial class Addcolumnimagetotable
+    [Migration("20210310141821_Create tables in DataBase")]
+    partial class CreatetablesinDataBase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace BaraholkaTeam.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.2");
 
-            modelBuilder.Entity("BaraholkaTeamProject.DAL.ContextData.Product", b =>
+            modelBuilder.Entity("BaraholkaTeam.DAL.ContextData.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,10 +33,17 @@ namespace BaraholkaTeam.DAL.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("character varying(1000)");
 
+                    b.Property<string>("FullDescription")
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");
@@ -49,10 +56,10 @@ namespace BaraholkaTeam.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("tblProducts");
+                    b.ToTable("tblProductsTeamProject");
                 });
 
-            modelBuilder.Entity("BaraholkaTeamProject.DAL.ContextData.User", b =>
+            modelBuilder.Entity("BaraholkaTeam.DAL.ContextData.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,9 +94,9 @@ namespace BaraholkaTeam.DAL.Migrations
                     b.ToTable("tblUsersTeamProject");
                 });
 
-            modelBuilder.Entity("BaraholkaTeamProject.DAL.ContextData.Product", b =>
+            modelBuilder.Entity("BaraholkaTeam.DAL.ContextData.Product", b =>
                 {
-                    b.HasOne("BaraholkaTeamProject.DAL.ContextData.User", "user")
+                    b.HasOne("BaraholkaTeam.DAL.ContextData.User", "user")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
