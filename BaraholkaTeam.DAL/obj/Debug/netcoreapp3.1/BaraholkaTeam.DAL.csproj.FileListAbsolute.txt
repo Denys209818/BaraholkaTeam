@@ -36,3 +36,5 @@ C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcor
 C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam.DAL\obj\Debug\netcoreapp3.1\BaraholkaTeam.DAL.genruntimeconfig.cache
 C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\Images\seederImage1.jpg
 C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\Images\seederImage2.jpg
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\Images\seederImage1.jpg
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam.DAL\bin\Debug\netcoreapp3.1\Images\seederImage2.jpg

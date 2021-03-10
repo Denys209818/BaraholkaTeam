@@ -132,3 +132,5 @@ C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcoreapp
 C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam\obj\Debug\netcoreapp3.1\BaraholkaTeam.genruntimeconfig.cache
 C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam\bin\Debug\netcoreapp3.1\Images\seederImage1.jpg
 C:\Users\dev\Desktop\New folder\BaraholkaTeam\BaraholkaTeam\bin\Debug\netcoreapp3.1\Images\seederImage2.jpg
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\bin\Debug\netcoreapp3.1\Images\seederImage1.jpg
+C:\Users\Denis\Desktop\TeamProject\BaraholkaTeam\BaraholkaTeam\bin\Debug\netcoreapp3.1\Images\seederImage2.jpg
