@@ -31,6 +31,81 @@ namespace BaraholkaTeam
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
 
             ShowAllProducts(SearchProducts.SearchProduct(context));
+            ShowFilters(GetFilters().ToList());
+        }
+        private void GroupBox_Click(object sender, EventArgs e) 
+        {
+            var groupBox = sender as GroupBox;
+            var fName = (groupBox.Tag as FilterNameModel);
+
+            if (fName.IsCollapsed)
+            {
+                fName.IsCollapsed = false;
+            }
+            else 
+            {
+                fName.IsCollapsed = true;
+            }
+
+            var checkedList = groupBox.Controls.OfType<CheckedListBox>().FirstOrDefault();
+            checkedList.Visible = fName.IsCollapsed;
+            if (fName.IsCollapsed)
+            {
+                groupBox.Height = checkedList.Height +30;
+            }
+            else 
+            {
+                groupBox.Height = 30;
+            }
+
+            FillGroupBoxes(this.Controls.OfType<GroupBox>().ToList());
+        }
+        private void FillGroupBoxes(IEnumerable<GroupBox> groupBoxes) 
+        {
+            int dy = 50;
+            
+            foreach (var groupBox in groupBoxes) 
+            {
+                if (groupBox.Name.Contains("gbFilter")) 
+                {
+                    groupBox.Location = new Point(825, dy);
+                    dy += groupBox.Height + 10;
+                }
+            }
+        }
+        private IEnumerable<FilterNameModel> GetFilters() 
+        {
+            List<FilterNameModel> model = new List<FilterNameModel>();
+            var filterNames = ConfigService.context.FilterNames.AsQueryable();
+            var filterNameValues = ConfigService.context.FilterNameValues.AsQueryable();
+
+            var joinedColl = from x in filterNames
+                             join g in filterNameValues on x.Id equals g.FilterNameId into newJoinColl
+                             from s in newJoinColl
+                             select new 
+                             {
+                             FilterName = x.Name,
+                             FilterNameId = x.Id,
+                             FilterValue = s.FilterValue,
+                             FilterValueId = s.FilterValueId
+                             };
+
+            var groupedCollection = from x in joinedColl.AsEnumerable()
+                                    group x by new { x.FilterName, x.FilterNameId } into gColl
+                                    select gColl;
+
+            foreach (var item in groupedCollection) 
+            {
+                model.Add(new FilterNameModel { 
+                Id = item.Key.FilterNameId,
+                Name = item.Key.FilterName,
+                Children = item.Select(x => new FilterValueModel {
+                Id = x.FilterValueId,
+                Name = x.FilterValue.Name
+                }).ToArray()
+                });
+            }
+            return model;
         }
         private void btnContact_Click(object sender, EventArgs e)
         {
@@ -41,14 +116,14 @@ namespace BaraholkaTeam
             userInfo.StartPosition = FormStartPosition.CenterParent;
             userInfo.ShowDialog();
         }
-        private void CreateGroupBox(Product product, int id, int dy = 305) 
+        private void CreateGroupBox(Product product, int id, int dy = 305)
         {
             GroupBox gbUser = GetGroupBox(product, id, dy);
 
             this.Controls.Add(gbUser);
             this.boxes.Add(gbUser);
         }
-        private GroupBox GetGroupBox(Product product, int id, int dy = 305) 
+        private GroupBox GetGroupBox(Product product, int id, int dy = 305)
         {
             GroupBox gbUser = new GroupBox();
             PictureBox pcBox = new PictureBox();
@@ -137,7 +212,7 @@ namespace BaraholkaTeam
 
             return gbUser;
         }
-        private void ShowAllProducts(ProductCollection coll, string query ="") 
+        private void ShowAllProducts(ProductCollection coll, string query = "")
         {
             foreach (GroupBox gb in this.boxes)
             {
@@ -145,7 +220,7 @@ namespace BaraholkaTeam
             }
             this.boxes.Clear();
             int x = 0;
-            foreach (var product in SearchProducts.SearchProduct(context, query).products) 
+            foreach (var product in SearchProducts.SearchProduct(context, query).products)
             {
                 CreateGroupBox(product, x++);
             }
@@ -154,7 +229,7 @@ namespace BaraholkaTeam
         {
             ShowAllProducts(SearchProducts.SearchProduct(context, txtSearch.Text), txtSearch.Text);
         }
-        private void LinkTitle_Click(object sender, EventArgs e) 
+        private void LinkTitle_Click(object sender, EventArgs e)
         {
             var product = (sender as LinkLabel).Tag as Product;
             FullInfo info = new FullInfo(this.context, product);
@@ -169,7 +244,7 @@ namespace BaraholkaTeam
             form.ShowDialog();
             this.Visible = true;
         }
-        private void AddToCart(object sender, EventArgs e) 
+        private void AddToCart(object sender, EventArgs e)
         {
             Product product = (sender as Button).Tag as Product;
             if (!ConfigService.products.Contains(product))
@@ -177,22 +252,21 @@ namespace BaraholkaTeam
                 ConfigService.products.Add(product);
                 MessageBox.Show("Товар доданий у корзину!");
             }
-            else 
+            else
             {
                 MessageBox.Show("Товар уже був доданий!");
             }
         }
-
         private void toolStripMenuItemProfile_Click(object sender, EventArgs e)
         {
             if (ConfigService.IsAuth)
             {
-            this.Visible = false;
+                this.Visible = false;
                 ProfileForm form = new ProfileForm();
                 form.ShowDialog();
-            this.Visible = true;
+                this.Visible = true;
             }
-            else 
+            else
             {
                 AuthForm auth = new AuthForm();
                 DialogResult res = auth.ShowDialog();
@@ -201,10 +275,50 @@ namespace BaraholkaTeam
                     ConfigService.IsAuth = true;
                     MessageBox.Show("Авторизовано!");
                 }
-                else if(res == DialogResult.No)
+                else if (res == DialogResult.No)
                 {
                     MessageBox.Show("Невірний логін або пароль!");
                 }
+            }
+        }
+        private void ShowFilters(IEnumerable<FilterNameModel> models) 
+        {
+            System.Windows.Forms.GroupBox gbFilter = new GroupBox();
+            System.Windows.Forms.CheckedListBox listFilter = new CheckedListBox();
+
+            int dy = 50;
+            foreach (var item in models) 
+            {
+                gbFilter = new System.Windows.Forms.GroupBox();
+                listFilter = new System.Windows.Forms.CheckedListBox();
+                gbFilter.SuspendLayout();
+                // 
+                // gbFilter
+                // 
+                gbFilter.Controls.Add(listFilter);
+                gbFilter.ForeColor = System.Drawing.Color.Red;
+                gbFilter.Location = new System.Drawing.Point(823, 47);
+                gbFilter.Name = $"gbFilter{item.Id}";
+                gbFilter.Size = new System.Drawing.Size(260, 171);
+                gbFilter.TabStop = false;
+                gbFilter.Text = item.Name;
+                gbFilter.Tag = item;
+                // 
+                // listFilter
+                // 
+                listFilter.FormattingEnabled = true;
+                listFilter.Location = new System.Drawing.Point(7, 27);
+                listFilter.Name = $"listFilter{item.Id}";
+                listFilter.Size = new System.Drawing.Size(247, 136);
+                gbFilter.Location = new Point(825, dy);
+                gbFilter.Click += GroupBox_Click;
+                gbFilter.Size = new  Size(gbFilter.Size.Width,  listFilter.Height + 30);
+                foreach (var child in item.Children)
+                {
+                    listFilter.Items.Add(child);
+                }
+                this.Controls.Add(gbFilter);
+                dy += gbFilter.Height + 10;
             }
         }
     }
