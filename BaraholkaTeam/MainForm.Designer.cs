@@ -38,6 +38,7 @@ namespace BaraholkaTeam
             this.toolStripMenuItemKorsina = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
+            
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@ namespace BaraholkaTeam
             this.toolStripMenuItemKorsina});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
-            this.mainMenu.Size = new System.Drawing.Size(982, 28);
+            this.mainMenu.Size = new System.Drawing.Size(1106, 28);
             this.mainMenu.TabIndex = 0;
             this.mainMenu.Text = "menuStrip1";
             // 
@@ -100,6 +101,7 @@ namespace BaraholkaTeam
             this.btnConfirm.Text = "Пошук";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            
             // 
             // MainForm
             // 
@@ -108,7 +110,7 @@ namespace BaraholkaTeam
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(982, 603);
+            this.ClientSize = new System.Drawing.Size(1106, 603);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.mainMenu);
