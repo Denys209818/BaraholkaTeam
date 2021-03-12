@@ -25,5 +25,6 @@ namespace BaraholkaTeam.DAL.ContextData
         public int Price { get; set; }
 
         public User user { get; set; }
+        public virtual ICollection<FilterProduct> FilterProducts { get; set; }
     }
 }
