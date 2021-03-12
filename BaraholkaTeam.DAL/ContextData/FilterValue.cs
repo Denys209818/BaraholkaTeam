@@ -14,5 +14,6 @@ namespace BaraholkaTeam.DAL.ContextData
         [Required, StringLength(255)]
         public string Name { get; set; }
         public virtual ICollection<FilterNameValue> NameValues { get; set; }
+        public virtual ICollection<FilterProduct> FilterProducts { get; set; }
     }
 }

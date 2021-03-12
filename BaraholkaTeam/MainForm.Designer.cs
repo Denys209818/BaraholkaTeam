@@ -38,7 +38,7 @@ namespace BaraholkaTeam
             this.toolStripMenuItemKorsina = new System.Windows.Forms.ToolStripMenuItem();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnConfirm = new System.Windows.Forms.Button();
-            
+            this.editForFilters = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +47,8 @@ namespace BaraholkaTeam
             this.mainMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemFile,
-            this.toolStripMenuItemKorsina});
+            this.toolStripMenuItemKorsina,
+            this.editForFilters});
             this.mainMenu.Location = new System.Drawing.Point(0, 0);
             this.mainMenu.Name = "mainMenu";
             this.mainMenu.Size = new System.Drawing.Size(1106, 28);
@@ -101,7 +102,13 @@ namespace BaraholkaTeam
             this.btnConfirm.Text = "Пошук";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            
+            // 
+            // editForFilters
+            // 
+            this.editForFilters.Name = "editForFilters";
+            this.editForFilters.Size = new System.Drawing.Size(155, 24);
+            this.editForFilters.Text = "Застосувати фільтр";
+            this.editForFilters.Click += new System.EventHandler(this.editForFilters_Click);
             // 
             // MainForm
             // 
@@ -137,5 +144,6 @@ namespace BaraholkaTeam
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemKorsina;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnConfirm;
+        private System.Windows.Forms.ToolStripMenuItem editForFilters;
     }
 }

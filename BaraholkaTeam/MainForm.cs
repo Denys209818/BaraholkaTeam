@@ -321,5 +321,134 @@ namespace BaraholkaTeam
                 dy += gbFilter.Height + 10;
             }
         }
+        private void editForFilters_Click(object sender, EventArgs e)
+        {
+            //  Колекція ідентифікаторів чекнутих елементів
+            List<int> CheckedItems = new List<int>();
+            //  Колекція моделей, які формується на основі ідентифікаторів чекнутих елементів
+            List<FilterProductModel> models = new List<FilterProductModel>();
+            //  Витягування елементів GroupBox з колекції Controls, які є фільтрами
+            var filters = this.Controls.OfType<GroupBox>().Where(x => x.Name.Contains("gbFilter"));
+            //  Число блоків фільтрів
+            int count = 0;
+            foreach (var filterBlok in filters) 
+            {
+                var checkedList = filterBlok.Controls.OfType<CheckedListBox>().FirstOrDefault();
+                foreach (var fValue in checkedList.CheckedItems) 
+                {
+                    CheckedItems.Add((fValue as FilterValueModel).Id);
+                    int fNameModel = (filterBlok.Tag as FilterNameModel).Id;
+                    int fValueModel = (fValue as FilterValueModel).Id;
+
+                    models.Add(new FilterProductModel {
+                        Id = count,
+                        FilterNameId = fNameModel,
+                        FilterValueId = fValueModel
+                    }) ;
+                }
+
+                count++;
+            }
+            //  Витягуються усі продукти з БД
+            var products = context.products.ToList();
+            //  Проміжна колекція, яка використовуюється для запису у неї нових елементів
+            //  Щоб в подальшому переприсвоїти колекцію products, а саме зменшити цю колекцію
+            //  при формуанні ігнорувавши непідходящі елементи
+            List<Product> newProduct;
+            for (int i = 0; i < count; i++) 
+            {
+                //  Витягування усіх чекнутих фільтрів (Проміжна таблицяі tblFilterProducts), 
+                //  які належать до i-го блока
+                var filtersParams = models.Where(x => x.Id == i).ToList();
+                //  Перевірка чи в блоці існують чекнуті елементи
+                if (filtersParams.Count > 0) 
+                {
+                    //  Ініціювання проміжної колекції
+                    newProduct = new List<Product>();
+                    //  Проходження по продуктах
+                    foreach (var product in products) 
+                    {
+                        //  Проходження по чекнутих елементах CheckedListBox-а
+                        foreach (var filterParam in filtersParams) 
+                        {
+                            //  Якщо існує елемент в проміжній таблиці, у якого ProductId дорівнює 
+                            //  ідентифікатору даного продукта
+                            //  і FilterNameId дорінює filterParam.FilterNameId (Назва блоку фільтрів)
+                            //  і FilterValueId дорінює filterParam.FilterValueId (Назва елемента фільтра)
+                            //  FilterNameId i FilterValueId - це дані про чекнутий елемент фільтра,
+                            //  який звязується з продуктом проміжною табличкою FilterProduct
+                            if (FilterService.IsFind(product, filterParam) && !newProduct.Contains(product)) 
+                            {
+                                //  Якщо існує такий елемент в проміжній таблиці то додається
+                                //  продукт до проміжної колекції
+                                newProduct.Add(product);
+                            }
+                        }
+                    }
+                    //  Переприсвоєння
+                    products = newProduct;
+                }
+                
+            }
+            //  Присвоєння до нового елемента кінцевого реультата
+            var productsResult = products.ToList();
+            //  Перегрупування груп-боксів на головній формі
+            replaceGroupBox(productsResult);
+            ///string strParam = "\"FilterValueId\" = ";
+            ///string query = "SELECT * from \"tblFilterProductsTeamProject\" WHERE (";
+            ///var filt = GetFilters().ToList();
+            ///foreach (var fNameModel in filt) 
+            ///{
+            ///    int count = 1;
+            ///    foreach (var fValueModel in fNameModel.Children) 
+            ///    {
+            ///        if (CheckedItems.Contains(fValueModel.Id)) 
+            ///        {
+            ///            query += strParam + fValueModel.Id.ToString() + " or ";
+            ///         
+            ///            count++;
+            ///        }
+            ///    }
+            ///    if (count > 1)
+            ///    {
+            ///        filt.Remove(fNameModel);
+            ///        query = query.Substring(0, query.Length - 4);
+            ///        query += ")"; //and (";
+            ///        fNameModel.IsCheckedItems = true;
+            ///        break;
+            ///    }
+            ///    else 
+            ///    {
+            ///        fNameModel.IsCheckedItems = false;
+            ///    }
+            ///}
+            ///query = query.Substring(0, query.Length - 6);
+            ///if (CheckedItems.Count() != 0) 
+            ///{
+            ///    List<Product> products = FilterService.GetProducts(query, context).ToList();
+            ///    foreach (var product in products) 
+            ///    {
+            ///        FilterService.CheckElement(product, filt);
+            ///    }
+            ///}
+        }
+        private void replaceGroupBox(List<Product> products) 
+        {
+            //  Видаляються усі елементи GroupBox, які повязані з продуктами
+            var gbProd = this.Controls.OfType<GroupBox>().Where(x => x.Name.Contains("gbUser"));
+            foreach (var box in gbProd) 
+            {
+                this.Controls.Remove(box);
+            }
+
+            //  Формується нові елементи
+            //  Номер блока фільтрів, він впливає на розміщення dy елемента
+            int count = 0;
+            foreach (var product in products) 
+            {
+                //  Метод, який створює блок
+                CreateGroupBox(product, count++);
+            }
+        }
     }
 }

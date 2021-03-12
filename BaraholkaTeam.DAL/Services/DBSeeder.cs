@@ -70,6 +70,21 @@ namespace BaraholkaTeamProject.DAL.Services
                     }
                 }
             }
+
+            List<FilterProduct> filterProducts = new List<FilterProduct> 
+            {
+            new FilterProduct { ProductId = 1, FilterValueId = 1, FilterNameId = 1 },
+            new FilterProduct { ProductId = 1, FilterValueId = 6, FilterNameId = 2 }
+            };
+
+            foreach (var filterProduct in filterProducts) 
+            {
+                if (context.FilterProducts.SingleOrDefault(x => x == filterProduct) == null) 
+                {
+                    context.FilterProducts.Add(filterProduct);
+                    context.SaveChanges();
+                }
+            }
         }
 
         private static void SeedProduct(MyContext context) 
